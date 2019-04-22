@@ -25,9 +25,11 @@
   <div class='Chat__holder'>
     <div class='Chat__body'></div>
   </div>
-  
+  <div>
+    <p id="cordendas"></p>
+  </div>
 
-  <div id="map" style="height: 400px; width:400px;"></div>
+  <div id="map" style="height: 400px; width:100%;"></div>
 
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -52,8 +54,49 @@
 
   </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxLNRXAO_NbGihsbK02zS5TOJCnTo4jIo&callback=initMap"
-    async defer></script>
+<!--script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxLNRXAO_NbGihsbK02zS5TOJCnTo4jIo&callback=initMap"
+    async defer></script-->
+
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAxLNRXAO_NbGihsbK02zS5TOJCnTo4jIo"></script>
+    <script>
+      $('.WatsonChat__send-button').click(function(){
+        var map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -27.092236, lng: -52.665352},
+          zoom: 18
+        });
+        markerUsuario = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: {lat: -27.092236, lng: -52.665352}
+      });
+      markerUsuario.addListener('click', toggleBounce);
+  
+      markerDest = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: {lat: -27.093188, lng: -52.666027}
+      });
+      markerDest.addListener('click', toggleBounce);
+    
+
+      });
+      
+
+
+
+function toggleBounce() {
+  if (markerDest.getAnimation() !== null) {
+    markerDest.setAnimation(null);
+  } else {
+    markerDest.setAnimation(google.maps.Animation.BOUNCE);
+  }
+}
+    </script>
+
+
 
 
 </body>
